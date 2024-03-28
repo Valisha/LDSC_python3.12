@@ -6,7 +6,7 @@ Re-wrote LDSC tool for Shared heritability analysis for python3.12.
 
 ./munge_sumstats_vshah.py --out mLOY_20240328 --merge-alleles /path/to/eur_w_ld_chr/w_hm3.snplist --N 10000 --sumstats /path/to/mLOY.sumstats.tsv
 
-### top 10 lines of both the summary statistics files
+### Top 10 lines of both the summary statistics files
 
 ##### mLOY
 snpid   hg18chr bp      a1      a2      or      se      pval    info    CEUaf
