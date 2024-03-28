@@ -1,6 +1,6 @@
 # LDSC_python3.12
 Re-wrote LDSC tool for Shared heritability analysis for python3.12.
-## test
+## Test
 
 ./munge_sumstats_vshah.py --out meta_20240328 --merge-alleles /path/to/eur_w_ld_chr/w_hm3.snplist --N 769475 --sumstats /path/to/european_ancestry.sumstats.tsv 
 
