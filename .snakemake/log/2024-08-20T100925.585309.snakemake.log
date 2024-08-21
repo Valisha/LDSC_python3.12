@@ -1,0 +1,3 @@
+NameError in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1, line 61:
+name 'db_SNP_INPUT' is not defined
+  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1", line 61, in <module>
