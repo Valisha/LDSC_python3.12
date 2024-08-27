@@ -1,0 +1,72 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                   count
+------------------  -------
+all                       1
+bedtools_intersect        1
+merge_with_rsID           1
+sort_bed                  1
+total                     4
+
+Select jobs to execute...
+
+[Mon Aug 12 23:56:42 2024]
+rule sort_bed:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.bed
+    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed
+    jobid: 3
+    reason: Missing output files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed
+    resources: tmpdir=/tmp
+
+
+        sort -k1,1 -k2,2n -k3,3n /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.bed > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed
+        
+[Tue Aug 13 00:03:07 2024]
+Finished job 3.
+1 of 4 steps (25%) done
+Select jobs to execute...
+
+[Tue Aug 13 00:03:07 2024]
+rule bedtools_intersect:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed
+    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.dbSnp.merged.bed
+    jobid: 2
+    reason: Missing output files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.dbSnp.merged.bed; Input files updated by another job: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed
+    resources: tmpdir=/tmp
+
+
+        bedtools intersect -b /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.with.end.sort.bed -a /n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed -sorted > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.dbSnp.merged.bed
+        
+[Tue Aug 13 00:08:42 2024]
+Finished job 2.
+2 of 4 steps (50%) done
+Select jobs to execute...
+
+[Tue Aug 13 00:08:42 2024]
+rule merge_with_rsID:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.dbSnp.merged.bed
+    output: GCST90328149_dbSnp_merged.tsv
+    jobid: 1
+    reason: Missing output files: GCST90328149_dbSnp_merged.tsv; Input files updated by another job: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.dbSnp.merged.bed
+    resources: tmpdir=/tmp
+
+/n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmpxbiavpez.merge_with_rsID.py
+[Tue Aug 13 00:16:28 2024]
+Finished job 1.
+3 of 4 steps (75%) done
+Select jobs to execute...
+
+[Tue Aug 13 00:16:28 2024]
+localrule all:
+    input: GCST90328149_dbSnp_merged.tsv
+    jobid: 0
+    reason: Input files updated by another job: GCST90328149_dbSnp_merged.tsv
+    resources: tmpdir=/tmp
+
+[Tue Aug 13 00:16:28 2024]
+Finished job 0.
+4 of 4 steps (100%) done
+Complete log: .snakemake/log/2024-08-12T235637.789086.snakemake.log

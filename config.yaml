@@ -1,0 +1,12 @@
+# Configuration file for Snakemake
+
+# Input files
+main_input: "/n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv"
+db_snp_input: "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/dbSnp153_sort_nochr.bed"
+sample_name: "GCST90328148-test"
+
+# Computational resources
+resources:
+  cores: 4
+  memory: 16000  # in MB
+  threads: 4

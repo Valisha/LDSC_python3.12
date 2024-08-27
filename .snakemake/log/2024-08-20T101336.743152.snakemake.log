@@ -1,0 +1,35 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+merge_with_rsID        1
+total                  2
+
+Select jobs to execute...
+
+[Tue Aug 20 10:13:43 2024]
+rule merge_with_rsID:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.dbSnp.merged.bed
+    output: GCST90328148-test_dbSnp_merged.tsv
+    jobid: 1
+    reason: Missing output files: GCST90328148-test_dbSnp_merged.tsv
+    resources: tmpdir=/tmp
+
+/n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmpkg1t7ps7.merge_with_rsID.py
+Terminating processes on user request, this might take some time.
+[Tue Aug 20 10:14:00 2024]
+Error in rule merge_with_rsID:
+    jobid: 1
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.dbSnp.merged.bed
+    output: GCST90328148-test_dbSnp_merged.tsv
+
+RuleException:
+CalledProcessError in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1, line 78:
+Command 'set -euo pipefail;  /n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmpkg1t7ps7.merge_with_rsID.py' died with <Signals.SIGINT: 2>.
+  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1", line 78, in __rule_merge_with_rsID
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+Complete log: .snakemake/log/2024-08-20T101336.743152.snakemake.log

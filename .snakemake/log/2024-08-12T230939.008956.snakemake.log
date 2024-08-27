@@ -1,0 +1,36 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+merge_with_rsID        1
+total                  2
+
+Select jobs to execute...
+
+[Mon Aug 12 23:09:45 2024]
+rule merge_with_rsID:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.dbSnp.merged.bed
+    output: GCST90328148_dbSnp_merged.tsv
+    jobid: 1
+    reason: Missing output files: GCST90328148_dbSnp_merged.tsv
+    resources: tmpdir=/tmp
+
+/n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmp_58vrclw.merge_with_rsID.py
+[Mon Aug 12 23:10:43 2024]
+Error in rule merge_with_rsID:
+    jobid: 1
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.dbSnp.merged.bed
+    output: GCST90328148_dbSnp_merged.tsv
+
+RuleException:
+CalledProcessError in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile, line 75:
+Command 'set -euo pipefail;  /n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmp_58vrclw.merge_with_rsID.py' returned non-zero exit status 1.
+  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile", line 75, in __rule_merge_with_rsID
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-12T230939.008956.snakemake.log

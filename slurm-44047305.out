@@ -1,0 +1,87 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                   count
+------------------  -------
+all                       1
+bedtools_intersect        1
+merge_with_rsID           1
+sort_bed                  1
+total                     4
+
+Select jobs to execute...
+
+[Tue Aug 13 11:09:17 2024]
+rule sort_bed:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.bed
+    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed
+    jobid: 3
+    reason: Missing output files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed
+    resources: tmpdir=/tmp
+
+
+        sort -k1,1 -k2,2n -k3,3n /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.bed > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed
+        
+[Tue Aug 13 11:12:58 2024]
+Finished job 3.
+1 of 4 steps (25%) done
+Select jobs to execute...
+
+[Tue Aug 13 11:12:58 2024]
+rule bedtools_intersect:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed
+    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+    jobid: 2
+    reason: Missing output files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed; Input files updated by another job: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed
+    resources: tmpdir=/tmp
+
+
+        bedtools intersect -b /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.with.end.sort.bed -a /n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed -sorted > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+        
+[Tue Aug 13 11:18:49 2024]
+Finished job 2.
+2 of 4 steps (50%) done
+Select jobs to execute...
+
+[Tue Aug 13 11:18:49 2024]
+rule merge_with_rsID:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+    output: GCST90328150_dbSnp_merged.tsv
+    jobid: 1
+    reason: Missing output files: GCST90328150_dbSnp_merged.tsv; Input files updated by another job: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+    resources: tmpdir=/tmp
+
+/n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmp3on_i8lb.merge_with_rsID.py
+GCST90328150_dbSnp_merged.tsv
+Traceback (most recent call last):
+  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmp3on_i8lb.merge_with_rsID.py", line 22, in <module>
+    merged_df = pd.merge(mLOX_tsv, mLOX_merged, how='left', on=['chromosome', 'base_pair_location'])
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 169, in merge
+    op = _MergeOperation(
+         ^^^^^^^^^^^^^^^^
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 791, in __init__
+    ) = self._get_merge_keys()
+        ^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/site-packages/pandas/core/reshape/merge.py", line 1287, in _get_merge_keys
+    left_keys.append(left._get_label_or_level_values(lk))
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/site-packages/pandas/core/generic.py", line 1844, in _get_label_or_level_values
+    raise KeyError(key)
+KeyError: 'chromosome'
+[Tue Aug 13 11:19:20 2024]
+Error in rule merge_with_rsID:
+    jobid: 1
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+    output: GCST90328150_dbSnp_merged.tsv
+
+RuleException:
+CalledProcessError in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile, line 76:
+Command 'set -euo pipefail;  /n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmp3on_i8lb.merge_with_rsID.py' returned non-zero exit status 1.
+  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile", line 76, in __rule_merge_with_rsID
+  File "/n/app/snakemake/7.32.3/snakemake/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look above for error message
+Complete log: .snakemake/log/2024-08-13T110909.690694.snakemake.log

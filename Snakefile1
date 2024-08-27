@@ -1,0 +1,80 @@
+# Load the config.yaml file
+configfile: "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/config.yaml"
+
+# Extract the variables from the config file
+MAIN_INPUT = config['main_input']
+# MAIN_INPUT = "/n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed"
+# db_SNP_INPUT = "/n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed"
+# INPUT_TSV = "/n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.tsv"
+DB_SNP_INPUT = config['db_snp_input']
+CORES = config['resources']['cores']
+MEMORY = config['resources']['memory']
+THREADS = config['resources']['threads']
+SAMPLE_NAME = config['sample_name']
+INPUT_TSV = config['main_input']
+
+rule all:
+    input:
+        SAMPLE_NAME + "_dbSnp_merged.tsv"
+
+rule cut_bed:
+    input:
+        MAIN_INPUT
+    output:
+        MAIN_INPUT + ".cut.bed"
+    shell:
+        """
+        cut -f1,2,3,4 {input} > {output}
+        """
+
+rule add_end_column:
+    input:
+        MAIN_INPUT + ".cut.bed"
+    output:
+        MAIN_INPUT + ".with.end.bed"
+    shell:
+        """
+        awk 'BEGIN{{OFS="\t"}} {{print $1, $2, $2+1}}' {input} > {output}
+        """
+
+rule sort_bed:
+    input:
+        MAIN_INPUT + ".with.end.bed"
+    output:
+        MAIN_INPUT + ".with.end.sort.bed"
+    shell:
+        """
+        sort -k1,1 -k2,2n -k3,3n {input} > {output}
+        """
+
+rule remove_chr_prefix:
+    input:
+        MAIN_INPUT + ".with.end.sort.bed"
+    output:
+        MAIN_INPUT + ".sort.nochr.bed"
+    shell:
+        """
+        sed 's/^chr//' {input} > {output}
+        """
+
+
+rule bedtools_intersect:
+    input:
+        bed=DB_SNP_INPUT,
+        a_file=MAIN_INPUT + ".sort.nochr.bed"
+    output:
+        MAIN_INPUT + ".dbSnp.merged.bed"
+    shell:
+        """
+        bedtools intersect -b {input.a_file} -a {input.bed} -sorted > {output}
+        """
+
+rule merge_with_rsID:
+    input:
+        tsv=INPUT_TSV,
+        merged_bed=MAIN_INPUT + ".dbSnp.merged.bed"
+    output:
+        SAMPLE_NAME + "_dbSnp_merged.tsv"
+    script:
+        "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/merge_with_rsID.py"
+

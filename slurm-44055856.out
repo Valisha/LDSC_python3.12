@@ -1,0 +1,40 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job                count
+---------------  -------
+all                    1
+merge_with_rsID        1
+total                  2
+
+Select jobs to execute...
+
+[Tue Aug 13 14:02:28 2024]
+rule merge_with_rsID:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.tsv, /n/scratch/users/v/vas485/mLOX/DATA/GCST90328150/GCST90328150.bed.dbSnp.merged.bed
+    output: GCST90328150_dbSnp_merged.tsv
+    jobid: 1
+    reason: Missing output files: GCST90328150_dbSnp_merged.tsv
+    resources: tmpdir=/tmp
+
+/n/app/snakemake/7.32.3/snakemake/bin/python3.12 /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/.snakemake/scripts/tmpxyk159d2.merge_with_rsID.py
+GCST90328150_dbSnp_merged.tsv
+Merging complete. The output has been saved to GCST90328150_dbSnp_merged.tsv
+[Tue Aug 13 14:07:11 2024]
+Finished job 1.
+1 of 2 steps (50%) done
+Select jobs to execute...
+
+[Tue Aug 13 14:07:11 2024]
+localrule all:
+    input: GCST90328150_dbSnp_merged.tsv
+    jobid: 0
+    reason: Input files updated by another job: GCST90328150_dbSnp_merged.tsv
+    resources: tmpdir=/tmp
+
+[Tue Aug 13 14:07:11 2024]
+Finished job 0.
+2 of 2 steps (100%) done
+Complete log: .snakemake/log/2024-08-13T140225.407797.snakemake.log

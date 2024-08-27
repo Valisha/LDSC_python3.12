@@ -1,0 +1,51 @@
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 4
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+add_end_column        1
+all                   1
+cut_bed               1
+total                 3
+
+Select jobs to execute...
+
+[Mon Aug 12 21:47:08 2024]
+rule cut_bed:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed
+    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.cut.bed
+    jobid: 2
+    reason: Missing output files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.cut.bed; Updated input files: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed
+    resources: tmpdir=/tmp
+
+[Mon Aug 12 21:47:23 2024]
+Finished job 2.
+1 of 3 steps (33%) done
+Select jobs to execute...
+
+[Mon Aug 12 21:47:23 2024]
+rule add_end_column:
+    input: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.cut.bed
+    output: GCST90328148.with.end.bed
+    jobid: 1
+    reason: Input files updated by another job: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.bed.cut.bed
+    resources: tmpdir=/tmp
+
+[Mon Aug 12 21:48:19 2024]
+Finished job 1.
+2 of 3 steps (67%) done
+Select jobs to execute...
+
+[Mon Aug 12 21:48:19 2024]
+localrule all:
+    input: GCST90328148.with.end.bed
+    jobid: 0
+    reason: Input files updated by another job: GCST90328148.with.end.bed
+    resources: tmpdir=/tmp
+
+[Mon Aug 12 21:48:19 2024]
+Finished job 0.
+3 of 3 steps (100%) done
+Complete log: .snakemake/log/2024-08-12T214703.024444.snakemake.log
