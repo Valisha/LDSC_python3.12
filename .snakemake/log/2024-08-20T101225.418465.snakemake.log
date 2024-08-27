@@ -1,3 +1,0 @@
-NameError in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1, line 72:
-name 'INPUT_TSV' is not defined
-  File "/n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile1", line 72, in <module>

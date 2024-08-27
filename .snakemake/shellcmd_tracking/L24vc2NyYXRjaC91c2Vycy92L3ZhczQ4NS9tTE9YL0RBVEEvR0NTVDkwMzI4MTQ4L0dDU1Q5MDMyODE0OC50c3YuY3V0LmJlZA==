@@ -1,3 +1,0 @@
-
-        cut -f1,2,3,4 /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.cut.bed
-        

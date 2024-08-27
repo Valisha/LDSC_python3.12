@@ -1,3 +1,0 @@
-
-        sort -k1,1 -k2,2n -k3,3n /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.cut.bed > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.sort.bed
-        

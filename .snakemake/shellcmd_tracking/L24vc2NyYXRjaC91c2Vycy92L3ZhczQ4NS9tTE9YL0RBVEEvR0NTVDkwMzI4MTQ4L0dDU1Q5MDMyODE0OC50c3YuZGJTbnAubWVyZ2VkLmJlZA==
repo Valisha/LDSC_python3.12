@@ -1,3 +1,0 @@
-
-        bedtools intersect -b /n/scratch/users/v/vas485/mLOX/DATA/dbSnps/dbSnp153_sort_nochr.bed -a /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.with.end.bed -sorted > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.dbSnp.merged.bed
-        

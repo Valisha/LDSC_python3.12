@@ -1,6 +1,0 @@
-Building DAG of jobs...
-MissingInputException in rule cut_bed in file /n/scratch/users/v/vas485/mLOX/DATA/SCRIPTS/Snakefile, line 17:
-Missing input files for rule cut_bed:
-    output: /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed.cut.bed
-    affected files:
-        /n/scratch/users/v/vas485/mLOX/DATA/GCST90328149/GCST90328149.bed

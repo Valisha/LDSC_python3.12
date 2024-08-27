@@ -1,3 +1,0 @@
-
-        sed 's/^chr//' /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.sort.bed > /n/scratch/users/v/vas485/mLOX/DATA/GCST90328148/GCST90328148.tsv.sort.nochr.bed
-        
